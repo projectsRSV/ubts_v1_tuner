@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ubts_tuning:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ubts_tuning_jar</output-path>
+    <root id="archive" name="ubts_tuning.jar">
+      <element id="module-output" name="ubts_tuning" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../../../source/controlsfx-8.40.14/controlsfx-8.40.14.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
