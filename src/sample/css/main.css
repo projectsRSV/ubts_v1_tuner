@@ -1,0 +1,12 @@
+/*for all buttons*/
+.text-empty {
+    -fx-fill: black;
+    -fx-font-weight:normal;
+    -fx-font-size: 12px
+}
+.text-fill{
+    -fx-fill: red;
+    -fx-font-weight:bold;
+    -fx-font-size: 12px
+}
+
