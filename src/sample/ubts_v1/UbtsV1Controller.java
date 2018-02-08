@@ -1,6 +1,8 @@
 package sample.ubts_v1;
 
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import sample.main.Controller;
@@ -73,13 +75,13 @@ public class UbtsV1Controller {
     @FXML
     private Spinner<Integer> pa3BandSpinner;
     @FXML
-    private Spinner<Integer> pa0AttSpinner;
+    private Spinner<Double> pa0AttSpinner;
     @FXML
-    private Spinner<Integer> pa1AttSpinner;
+    private Spinner<Double> pa1AttSpinner;
     @FXML
-    private Spinner<Integer> pa2AttSpinner;
+    private Spinner<Double> pa2AttSpinner;
     @FXML
-    private Spinner<Integer> pa3AttSpinner;
+    private Spinner<Double> pa3AttSpinner;
     @FXML
     private ToggleButton sendPa0;
     @FXML
@@ -90,7 +92,14 @@ public class UbtsV1Controller {
     private ToggleButton sendPa3;
     @FXML
     private CheckBox setCommandE7;
-
+    @FXML
+    private ComboBox<String> comboBoxStandart0;
+    @FXML
+    private ComboBox<String> comboBoxStandart1;
+    @FXML
+    private ComboBox<String> comboBoxStandart2;
+    @FXML
+    private ComboBox<String> comboBoxStandart3;
 
     List<Label> addList;
     List<Label> bandList;
@@ -116,10 +125,6 @@ public class UbtsV1Controller {
         SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory4 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
-        SpinnerValueFactory<Integer> valueFactory5 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 99, 0);
-        SpinnerValueFactory<Integer> valueFactory6 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 99, 0);
-        SpinnerValueFactory<Integer> valueFactory7 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 99, 0);
-        SpinnerValueFactory<Integer> valueFactory8 = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 99, 0);
         SpinnerValueFactory<Integer> valueFactory9 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory10 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory11 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
@@ -128,10 +133,16 @@ public class UbtsV1Controller {
         pa1ReadBandSpinner.setValueFactory(valueFactory2);
         pa2ReadBandSpinner.setValueFactory(valueFactory3);
         pa3ReadBandSpinner.setValueFactory(valueFactory4);
+
+        SpinnerValueFactory<Double> valueFactory5 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0,0.25);
+        SpinnerValueFactory<Double> valueFactory6 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0,0.25);
+        SpinnerValueFactory<Double> valueFactory7 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0,0.25);
+        SpinnerValueFactory<Double> valueFactory8 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0,0.25);
         pa0AttSpinner.setValueFactory(valueFactory5);
         pa1AttSpinner.setValueFactory(valueFactory6);
         pa2AttSpinner.setValueFactory(valueFactory7);
         pa3AttSpinner.setValueFactory(valueFactory8);
+
         pa0BandSpinner.setValueFactory(valueFactory9);
         pa1BandSpinner.setValueFactory(valueFactory10);
         pa2BandSpinner.setValueFactory(valueFactory11);
@@ -149,7 +160,15 @@ public class UbtsV1Controller {
             controller.sendCommand("76,0," + ((spinnerList.get(index).getValue() < 10) ? "0" : "") + spinnerList.get(index).getValue() + "," +
                     ((checkBoxList.get(index).isSelected() == true) ? "1" : "0"));
         };*/
-
+        ObservableList<String> stringObservableList = FXCollections.observableArrayList("GSM", "UMTS", "LTE", "CDMA");
+        comboBoxStandart0.setItems(stringObservableList);
+        comboBoxStandart1.setItems(stringObservableList);
+        comboBoxStandart2.setItems(stringObservableList);
+        comboBoxStandart3.setItems(stringObservableList);
+        comboBoxStandart0.setValue("UMTS");
+        comboBoxStandart1.setValue("UMTS");
+        comboBoxStandart2.setValue("UMTS");
+        comboBoxStandart3.setValue("UMTS");
     }
 
     @FXML
@@ -232,18 +251,18 @@ public class UbtsV1Controller {
     }
 
     @FXML
+    public void readAllTemp() {
+        controller.sendCommand(Commands.TEMP_ALL);
+    }
+
+    @FXML
     public void readVersion() {
         controller.sendCommand(Commands.READ_VERSION);
     }
 
     @FXML
     public void readInaBts() {
-        controller.sendCommand(Commands.INA_BTS);
-    }
-
-    @FXML
-    public void readInaPeriph() {
-        controller.sendCommand(Commands.INA_PERIPH);
+        controller.sendCommand(Commands.INA);
     }
 
     @FXML
@@ -273,26 +292,26 @@ public class UbtsV1Controller {
 
     @FXML
     public void sendPa0Handler() {
-        controller.sendCommand(Commands.SET_CHANNEL + "," + ((pa0BandSpinner.getValue() < 10) ? "0" : "") + pa0BandSpinner.getValue() + ","
-                + "U1" + "," + (sendPa0.isSelected() ? "1" : "0"));
+        controller.sendCommand(Commands.SET_CHANNEL + "," + "1" + "," + comboBoxStandart0.getValue().substring(0, 1) +
+                ((pa0BandSpinner.getValue() < 10) ? "0" : "") + pa0BandSpinner.getValue() + "," + (sendPa0.isSelected() ? "1" : "0"));
     }
 
     @FXML
     public void sendPa1Handler() {
-        controller.sendCommand(Commands.SET_CHANNEL + "," + ((pa1BandSpinner.getValue() < 10) ? "0" : "") + pa1BandSpinner.getValue() + ","
-                + "U2" + "," + (sendPa1.isSelected() ? "1" : "0"));
+        controller.sendCommand(Commands.SET_CHANNEL + "," + "2" + "," + comboBoxStandart1.getValue().substring(0, 1) +
+                ((pa1BandSpinner.getValue() < 10) ? "0" : "") + pa1BandSpinner.getValue() + "," + (sendPa1.isSelected() ? "1" : "0"));
     }
 
     @FXML
     public void sendPa2Handler() {
-        controller.sendCommand(Commands.SET_CHANNEL + "," + ((pa2BandSpinner.getValue() < 10) ? "0" : "") + pa2BandSpinner.getValue() + ","
-                + "U3" + "," + (sendPa2.isSelected() ? "1" : "0"));
+        controller.sendCommand(Commands.SET_CHANNEL + "," + "3" + "," + comboBoxStandart2.getValue().substring(0, 1) +
+                ((pa2BandSpinner.getValue() < 10) ? "0" : "") + pa2BandSpinner.getValue() + "," + (sendPa2.isSelected() ? "1" : "0"));
     }
 
     @FXML
     public void sendPa3Handler() {
-        controller.sendCommand(Commands.SET_CHANNEL + "," + ((pa3BandSpinner.getValue() < 10) ? "0" : "") + pa3BandSpinner.getValue() + ","
-                + "U4" + "," + (sendPa3.isSelected() ? "1" : "0"));
+        controller.sendCommand(Commands.SET_CHANNEL + "," + "4" + "," + comboBoxStandart3.getValue().substring(0, 1) +
+                ((pa3BandSpinner.getValue() < 10) ? "0" : "") + pa3BandSpinner.getValue() + "," + (sendPa3.isSelected() ? "1" : "0"));
     }
 
     @FXML

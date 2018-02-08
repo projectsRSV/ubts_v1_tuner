@@ -16,13 +16,14 @@ public class Commands {
     static final String GPS_ON = "01";
     static final String GPS_OFF = "03";
     static final String READ_VERSION = "00";
-    static final String INA_BTS = "08";
-    static final String INA_PERIPH = "09";
+    static final String INA = "0d";
+//    static final String INA_PERIPH = "09";
     static final String TEMP_BOARD = "04";
     static final String TEMP_PA0 = "16";
     static final String TEMP_PA1 = "17";
     static final String TEMP_PA2 = "18";
     static final String TEMP_PA3 = "19";
+    static final String TEMP_ALL = "1a";
     static final String SET_ATT_PA0 = "60";
     static final String SET_ATT_PA1 = "61";
     static final String SET_ATT_PA2 = "62";

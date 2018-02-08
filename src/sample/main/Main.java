@@ -12,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/sample/main/sample.fxml"));
         primaryStage.setTitle("Tuner");
-        Scene scene = new Scene(root, 881, 518);
+        Scene scene = new Scene(root, 970, 518);
         scene.getStylesheets().add("sample/css/main.css");
         primaryStage.setScene(scene);
         setUserAgentStylesheet(STYLESHEET_CASPIAN);

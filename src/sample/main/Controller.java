@@ -44,12 +44,12 @@ public class Controller {
 
     @FXML
     public void initialize() {
-        String[] ipWords = {"192.168.3.1", "192.168.3.3"};
+        String[] ipWords = {"192.168.3.3", "192.168.6.5", "192.168.6.10", "192.168.6.15", "192.168.6.20", "192.168.6.40"};
         String[] socketWords = {"4000", "5000", "5001", "6000"};
         TextFields.bindAutoCompletion(ipInputField, ipWords);
         TextFields.bindAutoCompletion(socketInputField, socketWords);
 
-        ipInputField.setText("192.168.3.3");
+//        ipInputField.setText("192.168.3.3");
         socketInputField.setText("5001");
 
         ubtsV1Controller.setController(this);
