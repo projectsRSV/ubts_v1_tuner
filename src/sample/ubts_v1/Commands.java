@@ -19,6 +19,7 @@ public class Commands {
     static final String INA = "0d";
 //    static final String INA_PERIPH = "09";
     static final String TEMP_BOARD = "04";
+    static final String SERIAL_NUM = "15";
     static final String TEMP_PA0 = "16";
     static final String TEMP_PA1 = "17";
     static final String TEMP_PA2 = "18";

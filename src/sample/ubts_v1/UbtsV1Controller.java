@@ -18,48 +18,48 @@ public class UbtsV1Controller {
     private Spinner<Integer> pa1ReadBandSpinner;
     @FXML
     private Spinner<Integer> pa2ReadBandSpinner;
-    @FXML
-    private Spinner<Integer> pa3ReadBandSpinner;
+    //    @FXML
+//    private Spinner<Integer> pa3ReadBandSpinner;
     @FXML
     private CheckBox pa0CheckBox;
     @FXML
     private CheckBox pa1CheckBox;
     @FXML
     private CheckBox pa2CheckBox;
-    @FXML
-    private CheckBox pa3CheckBox;
+    //    @FXML
+//    private CheckBox pa3CheckBox;
     @FXML
     private Label pa0AddrI2CLabel;
     @FXML
     private Label pa1AddrI2CLabel;
     @FXML
     private Label pa2AddrI2CLabel;
-    @FXML
-    private Label pa3AddrI2CLabel;
+    //    @FXML
+//    private Label pa3AddrI2CLabel;
     @FXML
     private Label pa0BandLabel;
     @FXML
     private Label pa1BandLabel;
     @FXML
     private Label pa2BandLabel;
-    @FXML
-    private Label pa3BandLabel;
+    //    @FXML
+//    private Label pa3BandLabel;
     @FXML
     private Label pa0IsActiveLabel;
     @FXML
     private Label pa1IsActiveLabel;
     @FXML
     private Label pa2IsActiveLabel;
-    @FXML
-    private Label pa3IsActiveLabel;
+    //    @FXML
+//    private Label pa3IsActiveLabel;
     @FXML
     private Label pa0FanPinLabel;
     @FXML
     private Label pa1FanPinLabel;
     @FXML
     private Label pa2FanPinLabel;
-    @FXML
-    private Label pa3FanPinLabel;
+    //    @FXML
+//    private Label pa3FanPinLabel;
     @FXML
     private ToggleButton nmTglBtn;
     @FXML
@@ -111,7 +111,7 @@ public class UbtsV1Controller {
     }
 
     public void setPaModel(List<AmplifModel> paModels) {
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             addList.get(i).textProperty().bind(paModels.get(i).addressI2CProperty());
             bandList.get(i).textProperty().bind(paModels.get(i).bandProperty());
             fanpinList.get(i).textProperty().bind(paModels.get(i).fanPinProperty());
@@ -132,12 +132,12 @@ public class UbtsV1Controller {
         pa0ReadBandSpinner.setValueFactory(valueFactory1);
         pa1ReadBandSpinner.setValueFactory(valueFactory2);
         pa2ReadBandSpinner.setValueFactory(valueFactory3);
-        pa3ReadBandSpinner.setValueFactory(valueFactory4);
+//        pa3ReadBandSpinner.setValueFactory(valueFactory4);
 
-        SpinnerValueFactory<Double> valueFactory5 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0,0.25);
-        SpinnerValueFactory<Double> valueFactory6 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0,0.25);
-        SpinnerValueFactory<Double> valueFactory7 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0,0.25);
-        SpinnerValueFactory<Double> valueFactory8 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0,0.25);
+        SpinnerValueFactory<Double> valueFactory5 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0, 0.25);
+        SpinnerValueFactory<Double> valueFactory6 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0, 0.25);
+        SpinnerValueFactory<Double> valueFactory7 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0, 0.25);
+        SpinnerValueFactory<Double> valueFactory8 = new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 27.25, 0, 0.25);
         pa0AttSpinner.setValueFactory(valueFactory5);
         pa1AttSpinner.setValueFactory(valueFactory6);
         pa2AttSpinner.setValueFactory(valueFactory7);
@@ -149,10 +149,10 @@ public class UbtsV1Controller {
         pa3BandSpinner.setValueFactory(valueFactory12);
 //        List<CheckBox> checkBoxList = Arrays.asList(pa0CheckBox, pa1CheckBox, pa2CheckBox, pa3CheckBox);
 //        List<Spinner<Integer>> spinnerList = Arrays.asList(pa0ReadBandSpinner, pa1ReadBandSpinner, pa2ReadBandSpinner, pa3ReadBandSpinner);
-        addList = Arrays.asList(pa0AddrI2CLabel, pa1AddrI2CLabel, pa2AddrI2CLabel, pa3AddrI2CLabel);
-        bandList = Arrays.asList(pa0BandLabel, pa1BandLabel, pa2BandLabel, pa3BandLabel);
-        fanpinList = Arrays.asList(pa0FanPinLabel, pa1FanPinLabel, pa2FanPinLabel, pa3FanPinLabel);
-        activeList = Arrays.asList(pa0IsActiveLabel, pa1IsActiveLabel, pa2IsActiveLabel, pa3IsActiveLabel);
+        addList = Arrays.asList(pa0AddrI2CLabel, pa1AddrI2CLabel, pa2AddrI2CLabel);
+        bandList = Arrays.asList(pa0BandLabel, pa1BandLabel, pa2BandLabel);
+        fanpinList = Arrays.asList(pa0FanPinLabel, pa1FanPinLabel, pa2FanPinLabel);
+        activeList = Arrays.asList(pa0IsActiveLabel, pa1IsActiveLabel, pa2IsActiveLabel);
 
         /*EventHandler setButtonHandler = event -> {
             Button button = (Button) event.getSource();
@@ -189,11 +189,11 @@ public class UbtsV1Controller {
                 (pa2CheckBox.isSelected() ? "1" : "0"));
     }
 
-    @FXML
-    public void setPA3Handler() {
-        controller.sendCommand(Commands.TUNE_PA + ",3," + ((pa3ReadBandSpinner.getValue() < 10) ? "0" : "") + pa3ReadBandSpinner.getValue() + "," +
-                (pa3CheckBox.isSelected() ? "1" : "0"));
-    }
+//    @FXML
+//    public void setPA3Handler() {
+//        controller.sendCommand(Commands.TUNE_PA + ",3," + ((pa3ReadBandSpinner.getValue() < 10) ? "0" : "") + pa3ReadBandSpinner.getValue() + "," +
+//                (pa3CheckBox.isSelected() ? "1" : "0"));
+//    }
 
     @FXML
     public void readPA0Handler() {
@@ -271,6 +271,11 @@ public class UbtsV1Controller {
     }
 
     @FXML
+    public void readSerialNumber() {
+        controller.sendCommand(Commands.SERIAL_NUM);
+    }
+
+    @FXML
     public void gpsHandler() {
         controller.sendCommand(gpsTglBtn.isSelected() ? Commands.GPS_ON : Commands.GPS_OFF);
     }
@@ -316,22 +321,26 @@ public class UbtsV1Controller {
 
     @FXML
     public void setAttHandler0() {
-        controller.sendCommand(Commands.SET_ATT_PA0 + "," + ((pa0AttSpinner.getValue() < 10) ? "0" : "") + pa0AttSpinner.getValue());
+        String result = getStringSpinnerValue(pa0AttSpinner.getValue());
+        controller.sendCommand(Commands.SET_ATT_PA0 + "," + ((result.length() == 1) ? "0" : "") + result);
     }
 
     @FXML
     public void setAttHandler1() {
-        controller.sendCommand(Commands.SET_ATT_PA1 + "," + ((pa1AttSpinner.getValue() < 10) ? "0" : "") + pa1AttSpinner.getValue());
+        String result = getStringSpinnerValue(pa1AttSpinner.getValue());
+        controller.sendCommand(Commands.SET_ATT_PA1 + "," + ((result.length() == 1) ? "0" : "") + result);
     }
 
     @FXML
     public void setAttHandler2() {
-        controller.sendCommand(Commands.SET_ATT_PA2 + "," + ((pa2AttSpinner.getValue() < 10) ? "0" : "") + pa2AttSpinner.getValue());
+        String result = getStringSpinnerValue(pa2AttSpinner.getValue());
+        controller.sendCommand(Commands.SET_ATT_PA2 + "," + ((result.length() == 1) ? "0" : "") + result);
     }
 
     @FXML
     public void setAttHandler3() {
-        controller.sendCommand(Commands.SET_ATT_PA3 + "," + ((pa3AttSpinner.getValue() < 10) ? "0" : "") + pa3AttSpinner.getValue());
+        String result = getStringSpinnerValue(pa3AttSpinner.getValue());
+        controller.sendCommand(Commands.SET_ATT_PA3 + "," + ((result.length() == 1) ? "0" : "") + result);
     }
 
     @FXML
@@ -343,5 +352,12 @@ public class UbtsV1Controller {
     @FXML
     public void readAttHandler() {
         controller.sendCommand(Commands.READ_ATT);
+    }
+
+    private String getStringSpinnerValue(double spinnerValue) {
+        int whole = (int) spinnerValue << 2;
+        int fraction = (int) (spinnerValue % 1 * 100);
+        whole = whole + fraction / 25;
+        return Integer.toHexString(whole);
     }
 }

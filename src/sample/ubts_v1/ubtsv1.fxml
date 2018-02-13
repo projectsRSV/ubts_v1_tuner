@@ -14,7 +14,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="593.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.ubts_v1.UbtsV1Controller">
     <children>
-        <GridPane alignment="CENTER" hgap="5.0" maxHeight="440.0" maxWidth="577.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="577.0" StackPane.alignment="CENTER_LEFT">
+        <GridPane alignment="CENTER" hgap="2.0" maxHeight="440.0" maxWidth="577.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="577.0" vgap="2.0" StackPane.alignment="CENTER_LEFT">
             <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="57.0" minWidth="10.0" prefWidth="52.0" />
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="74.0" minWidth="10.0" prefWidth="52.0" />
@@ -65,12 +65,12 @@
                 <Spinner fx:id="pa0ReadBandSpinner" minHeight="20.0" prefHeight="20.0" prefWidth="52.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <CheckBox fx:id="pa0CheckBox" mnemonicParsing="false" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-                <Label text="PA1" />
+                      <Label text="PA1" />
                 <Label text="PA2" GridPane.rowIndex="5" />
                 <Label text="PA3" GridPane.columnIndex="5" />
                 <Label text="PA4" GridPane.columnIndex="5" GridPane.rowIndex="5" />
 
-                <Label fx:id="pa0AddrI2CLabel" text="0x00" GridPane.columnIndex="4">
+                      <Label fx:id="pa0AddrI2CLabel" text="0x00" GridPane.columnIndex="4">
                     <padding>
                         <Insets right="25.0" />
                     </padding>
@@ -167,7 +167,7 @@
                 <Label text="fan pin =" GridPane.columnIndex="7" GridPane.rowIndex="7" />
                 <Label text="is valid =" GridPane.columnIndex="7" GridPane.rowIndex="8" />
 
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setPA1Handler" prefWidth="50.0" text="set" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                      <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#setPA1Handler" prefWidth="50.0" text="set" GridPane.columnIndex="1" GridPane.rowIndex="5">
                     <padding>
                         <Insets bottom="2.0" />
                     </padding>
@@ -202,12 +202,12 @@
                 <CheckBox fx:id="pa3CheckBox" mnemonicParsing="false" GridPane.columnIndex="6" GridPane.rowIndex="8" />
                 <Spinner fx:id="pa1ReadBandSpinner" minHeight="20.0" prefWidth="52.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                 <Spinner fx:id="pa3ReadBandSpinner" minHeight="20.0" prefWidth="52.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#readVersion" prefWidth="50.0" text="version" GridPane.rowIndex="17">
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#readVersion" prefWidth="50.0" text="version" GridPane.columnIndex="2" GridPane.rowIndex="16">
                     <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" />
                     </padding>
                 </Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#jumpToBootloader" prefWidth="50.0" text="loader" GridPane.rowIndex="16">
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#jumpToBootloader" prefWidth="50.0" text="loader" GridPane.columnIndex="1" GridPane.rowIndex="16">
                     <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" />
                     </padding>
@@ -215,12 +215,12 @@
                         <Insets />
                     </GridPane.margin>
                 </Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#rebootDevice" prefWidth="50.0" text="reboot" GridPane.rowIndex="15">
+                <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#rebootDevice" prefWidth="50.0" text="reboot" GridPane.rowIndex="16">
                     <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" />
                     </padding>
                 </Button>
-                <ToggleButton fx:id="gpsTglBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gpsHandler" prefWidth="50.0" text="gps" GridPane.columnIndex="1" GridPane.rowIndex="15">
+                <ToggleButton fx:id="gpsTglBtn" contentDisplay="CENTER" mnemonicParsing="false" onAction="#gpsHandler" prefWidth="50.0" text="gps" GridPane.columnIndex="3" GridPane.rowIndex="16">
                     <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" />
                     </padding>
@@ -280,7 +280,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" />
                     </padding>
                 </ToggleButton>
-                <ToggleButton fx:id="wifiTglBtn" contentDisplay="CENTER" layoutX="260.0" layoutY="56.0" mnemonicParsing="false" onAction="#wifiHandler" prefWidth="50.0" text="wifi" GridPane.columnIndex="1" GridPane.rowIndex="16">
+                <ToggleButton fx:id="wifiTglBtn" contentDisplay="CENTER" layoutX="260.0" layoutY="56.0" mnemonicParsing="false" onAction="#wifiHandler" prefWidth="50.0" text="wifi" GridPane.columnIndex="3" GridPane.rowIndex="17">
                     <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" />
                     </padding>
@@ -292,7 +292,7 @@
                         <Insets bottom="2.0" left="2.0" right="2.0" />
                     </padding>
                 </Button>
-                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="382.0" mnemonicParsing="false" onAction="#askBandNmHadler" prefWidth="50.0" text="bands?" GridPane.columnIndex="3" GridPane.rowIndex="18">
+                <Button alignment="CENTER" contentDisplay="CENTER" layoutX="13.0" layoutY="382.0" mnemonicParsing="false" onAction="#askBandNmHadler" prefWidth="50.0" text="bands?" GridPane.columnIndex="2" GridPane.rowIndex="18">
                     <padding>
                         <Insets bottom="2.0" left="2.0" right="2.0" />
                     </padding>
@@ -303,10 +303,7 @@
                 <Spinner fx:id="pa3BandSpinner" layoutX="12.0" layoutY="313.0" minHeight="20.0" prefWidth="52.0" GridPane.columnIndex="1" GridPane.rowIndex="14" />
                 <Label layoutX="83.0" layoutY="248.0" maxHeight="-Infinity" maxWidth="-Infinity" text="atten" GridPane.columnIndex="4" GridPane.rowIndex="10" />
                 <Spinner fx:id="pa0AttSpinner" layoutX="71.0" layoutY="266.0" minHeight="20.0" prefHeight="20.0" prefWidth="63.0" GridPane.columnIndex="4" GridPane.rowIndex="11" />
-                <Spinner fx:id="pa1AttSpinner" layoutX="132.0" layoutY="266.0" minHeight="20.0" prefHeight="20.0" prefWidth="52.0" GridPane.columnIndex="4" GridPane.rowIndex="12" />
-                <Spinner fx:id="pa2AttSpinner" layoutX="132.0" layoutY="286.0" minHeight="20.0" prefHeight="20.0" prefWidth="52.0" GridPane.columnIndex="4" GridPane.rowIndex="13" />
                 <Spinner fx:id="pa2ReadBandSpinner" layoutX="132.0" layoutY="306.0" minHeight="20.0" prefHeight="20.0" prefWidth="52.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
-                <Spinner fx:id="pa3AttSpinner" minHeight="20.0" prefWidth="52.0" GridPane.columnIndex="4" GridPane.rowIndex="14" />
             <Label layoutX="17.0" layoutY="229.0" maxHeight="-Infinity" maxWidth="-Infinity" text="1" GridPane.rowIndex="11" />
             <Label layoutX="34.0" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" text="2" GridPane.rowIndex="12" />
             <Label layoutX="34.0" layoutY="273.0" maxHeight="-Infinity" maxWidth="-Infinity" text="3" GridPane.rowIndex="13" />
@@ -331,12 +328,12 @@
                   <Insets bottom="2.0" />
                </padding>
             </Button>
-            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="250.0" mnemonicParsing="false" onAction="#setSetCommandE7" prefWidth="50.0" text="\%e8*" GridPane.columnIndex="4" GridPane.rowIndex="15">
+            <Button alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="250.0" mnemonicParsing="false" onAction="#setSetCommandE7" prefWidth="50.0" text="\%e8*" GridPane.columnIndex="4" GridPane.rowIndex="16">
                <padding>
                   <Insets bottom="2.0" />
                </padding>
             </Button>
-            <CheckBox fx:id="setCommandE7" layoutX="87.0" layoutY="80.0" mnemonicParsing="false" text="set" GridPane.columnIndex="4" GridPane.rowIndex="16" />
+            <CheckBox fx:id="setCommandE7" layoutX="87.0" layoutY="80.0" mnemonicParsing="false" text="set" GridPane.columnIndex="4" GridPane.rowIndex="17" />
             <Button alignment="CENTER" contentDisplay="CENTER" layoutX="255.0" layoutY="251.0" mnemonicParsing="false" onAction="#readAttHandler" prefWidth="50.0" text="read att" GridPane.columnIndex="5" GridPane.rowIndex="10">
                <padding>
                   <Insets bottom="2.0" />
@@ -352,10 +349,10 @@
                   <Insets bottom="2.0" />
                </padding>
             </Button>
+            <Spinner fx:id="pa1AttSpinner" layoutX="271.0" layoutY="249.0" minHeight="20.0" prefHeight="20.0" prefWidth="63.0" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+            <Spinner fx:id="pa2AttSpinner" layoutX="271.0" layoutY="271.0" minHeight="20.0" prefHeight="20.0" prefWidth="63.0" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+            <Spinner fx:id="pa3AttSpinner" layoutX="271.0" layoutY="293.0" minHeight="20.0" prefHeight="20.0" prefWidth="63.0" GridPane.columnIndex="4" GridPane.rowIndex="14" />
             </children>
-            <padding>
-                <Insets top="5.0" />
-            </padding>
         </GridPane>
     </children>
 </StackPane>
