@@ -12,13 +12,9 @@ import org.controlsfx.control.textfield.TextFields;
 import sample.socketfx.SocketClient;
 import sample.socketfx.SocketListener;
 import sample.ubts2100.Ubts2100Controller;
-import sample.ubts_v1.AmplifModel;
-import sample.ubts_v1.Parser;
 import sample.ubts_v1.UbtsV1Controller;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.List;
 
 public class Controller {
     @FXML
@@ -39,8 +35,7 @@ public class Controller {
     private Ubts2100Controller ubts2100Controller;
 
     private SocketClient socketClient;
-    private List<AmplifModel> paModelList = Arrays.asList(new AmplifModel(), new AmplifModel(), new AmplifModel(), new AmplifModel());
-    private Parser parser = new Parser(paModelList);
+
 
     @FXML
     public void initialize() {
@@ -53,7 +48,7 @@ public class Controller {
         socketInputField.setText("5001");
 
         ubtsV1Controller.setController(this);
-        ubtsV1Controller.setPaModel(paModelList);
+//        ubtsV1Controller.bindPaParams();
 
         mainTextFlow.getChildren().addListener((ListChangeListener<? super Node>) c -> {
             mainTextFlow.layout();
@@ -91,7 +86,6 @@ public class Controller {
         @Override
         public void onMessage(String message) {
             printReceivedMessage(message);
-            parser.parse(message);
         }
 
         @Override
@@ -135,6 +129,7 @@ public class Controller {
     }*/
 
     protected void printReceivedMessage(String message) {
+        ubtsV1Controller.getParser().parse(message);
         Text text = new Text();
         text.getStyleClass().add("text-empty");
         text.setText(message);

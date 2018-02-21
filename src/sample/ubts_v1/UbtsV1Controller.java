@@ -105,22 +105,30 @@ public class UbtsV1Controller {
     List<Label> bandList;
     List<Label> fanpinList;
     List<Label> activeList;
+    List<Spinner<Double>> spinners = Arrays.asList(pa0AttSpinner, pa1AttSpinner, pa2AttSpinner, pa3AttSpinner);
+    private List<AmplifModel> paModelList = Arrays.asList(new AmplifModel(), new AmplifModel(), new AmplifModel(), new AmplifModel());
+    private Parser parser = new Parser(paModelList);
 
     public void setController(Controller controller) {
         this.controller = controller;
     }
 
-    public void setPaModel(List<AmplifModel> paModels) {
+    public Parser getParser() {
+        return parser;
+    }
+
+    private void bindPaParams() {
         for (int i = 0; i < 3; i++) {
-            addList.get(i).textProperty().bind(paModels.get(i).addressI2CProperty());
-            bandList.get(i).textProperty().bind(paModels.get(i).bandProperty());
-            fanpinList.get(i).textProperty().bind(paModels.get(i).fanPinProperty());
-            activeList.get(i).textProperty().bind(paModels.get(i).validProperty());
+            addList.get(i).textProperty().bind(paModelList.get(i).addressI2CProperty());
+            bandList.get(i).textProperty().bind(paModelList.get(i).bandProperty());
+            fanpinList.get(i).textProperty().bind(paModelList.get(i).fanPinProperty());
+            activeList.get(i).textProperty().bind(paModelList.get(i).validProperty());
         }
     }
 
     @FXML
     public void initialize() {
+
         SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
@@ -169,6 +177,10 @@ public class UbtsV1Controller {
         comboBoxStandart1.setValue("UMTS");
         comboBoxStandart2.setValue("UMTS");
         comboBoxStandart3.setValue("UMTS");
+
+        spinners = Arrays.asList(pa0AttSpinner, pa1AttSpinner, pa2AttSpinner, pa3AttSpinner);
+        parser.setSpinners(spinners);
+        bindPaParams();
     }
 
     @FXML

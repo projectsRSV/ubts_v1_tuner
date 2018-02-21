@@ -47,7 +47,7 @@
                                 <Tab text="UBTS_V1">
                                     <fx:include fx:id="ubtsV1" source="/sample/ubts_v1/ubtsv2.fxml"/>
                                 </Tab>
-                                <Tab text="ubts2100Tab">
+                                <Tab text="ubts2100">
                                     <fx:include fx:id="ubts2100" source="/sample/ubts2100/ubts2100.fxml"/>
                                 </Tab>
                             </tabs>
