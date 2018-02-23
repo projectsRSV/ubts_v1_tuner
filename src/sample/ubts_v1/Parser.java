@@ -10,7 +10,8 @@ import java.util.Map;
 
 public class Parser {
     private List<AmplifModel> paModels;
-    private List<Spinner<Double>> spinners;
+    private List<Spinner<Double>> spinnersAtt;
+    private List<Spinner<Integer>> spinnersBand;
     private Map<Integer, Double> integerDoubleMap;
 
     public Parser(List<AmplifModel> paModels) {
@@ -19,8 +20,12 @@ public class Parser {
         initMap();
     }
 
-    public void setSpinners(List<Spinner<Double>> spinners) {
-        this.spinners = spinners;
+    public void setSpinnersAtt(List<Spinner<Double>> spinners) {
+        this.spinnersAtt = spinners;
+    }
+
+    public void setSpinnersBand(List<Spinner<Integer>> spinnersBand) {
+        this.spinnersBand = spinnersBand;
     }
 
     public void parse(String message) {
@@ -28,6 +33,7 @@ public class Parser {
         List<String> bandList = Arrays.asList("PA0_band", "PA1_band", "PA2_band", "PA3_band");
         List<String> actList = Arrays.asList("PA0_isactive", "PA1_isactive", "PA2_isactive", "PA3_isactive");
         List<String> fanList = Arrays.asList("PA0_fanpin", "PA1_fanpin", "PA2_fanpin", "PA3_fanpin");
+        String bandVar;
         try {
             if (message.contains("address") && message.contains("band") && message.contains("fanpin") && message.contains("isactive")) {
                 //            System.out.println(message.substring(message.indexOf("_address") - 1, message.indexOf("_address")));
@@ -36,8 +42,10 @@ public class Parser {
 
                 paModels.get(i).setAddressI2C(message.substring(message.indexOf(addList.get(i)) + addList.get(i).length() + 1,
                         message.indexOf(addList.get(i)) + addList.get(i).length() + 3));
-                paModels.get(i).setBand(message.substring(message.indexOf(bandList.get(i)) + bandList.get(i).length() + 1,
-                        message.indexOf(bandList.get(i)) + bandList.get(i).length() + 3));
+                bandVar = message.substring(message.indexOf(bandList.get(i)) + bandList.get(i).length() + 1,
+                        message.indexOf(bandList.get(i)) + bandList.get(i).length() + 3);
+                paModels.get(i).setBand(bandVar);
+                spinnersBand.get(i).getValueFactory().setValue(Integer.parseInt(bandVar));
                 paModels.get(i).setValid(message.substring(message.indexOf(actList.get(i)) + actList.get(i).length() + 1,
                         message.indexOf(actList.get(i)) + actList.get(i).length() + 3));
                 paModels.get(i).setFanPin(message.substring(message.indexOf(fanList.get(i)) + fanList.get(i).length() + 1,
@@ -49,7 +57,9 @@ public class Parser {
                     try {
                         int intVar = Integer.parseInt(strings[j], 16);
                         double doubleVar = 0;
-                        doubleVar = integerDoubleMap.get(intVar & 0xfc);
+                        if ((intVar & 0xfc) != 0) {
+                            doubleVar = integerDoubleMap.get(intVar & 0xfc);
+                        }
                         if ((intVar & 0x01) == 0x01) {
                             intVar &= 0xfe;
                             doubleVar += 0.25;
@@ -58,7 +68,7 @@ public class Parser {
                             intVar &= 0xfd;
                             doubleVar += 0.5;
                         }
-                        spinners.get(k++).getValueFactory().setValue(doubleVar);
+                        spinnersAtt.get(k++).getValueFactory().setValue(doubleVar);
                     } catch (NumberFormatException e) {
 //                        System.out.println(e.getClass().getName());
                     }

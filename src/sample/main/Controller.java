@@ -1,5 +1,6 @@
 package sample.main;
 
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -129,7 +130,7 @@ public class Controller {
     }*/
 
     protected void printReceivedMessage(String message) {
-        ubtsV1Controller.getParser().parse(message);
+        Platform.runLater(() -> ubtsV1Controller.getParser().parse(message));
         Text text = new Text();
         text.getStyleClass().add("text-empty");
         text.setText(message);

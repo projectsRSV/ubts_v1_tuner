@@ -101,13 +101,20 @@ public class UbtsV1Controller {
     @FXML
     private ComboBox<String> comboBoxStandart3;
 
-    List<Label> addList;
+    List<Label> addrList;
     List<Label> bandList;
     List<Label> fanpinList;
     List<Label> activeList;
-    List<Spinner<Double>> spinners = Arrays.asList(pa0AttSpinner, pa1AttSpinner, pa2AttSpinner, pa3AttSpinner);
-    private List<AmplifModel> paModelList = Arrays.asList(new AmplifModel(), new AmplifModel(), new AmplifModel(), new AmplifModel());
-    private Parser parser = new Parser(paModelList);
+
+    List<Spinner<Double>> spinnersAtt;
+    List<Spinner<Integer>> spinnersBand;
+    private List<AmplifModel> paModelList;
+    private Parser parser;
+
+    public UbtsV1Controller() {
+        paModelList = Arrays.asList(new AmplifModel(), new AmplifModel(), new AmplifModel(), new AmplifModel());
+        parser = new Parser(paModelList);
+    }
 
     public void setController(Controller controller) {
         this.controller = controller;
@@ -119,7 +126,7 @@ public class UbtsV1Controller {
 
     private void bindPaParams() {
         for (int i = 0; i < 3; i++) {
-            addList.get(i).textProperty().bind(paModelList.get(i).addressI2CProperty());
+            addrList.get(i).textProperty().bind(paModelList.get(i).addressI2CProperty());
             bandList.get(i).textProperty().bind(paModelList.get(i).bandProperty());
             fanpinList.get(i).textProperty().bind(paModelList.get(i).fanPinProperty());
             activeList.get(i).textProperty().bind(paModelList.get(i).validProperty());
@@ -132,7 +139,7 @@ public class UbtsV1Controller {
         SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory2 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory3 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
-        SpinnerValueFactory<Integer> valueFactory4 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
+//        SpinnerValueFactory<Integer> valueFactory4 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory9 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory10 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
         SpinnerValueFactory<Integer> valueFactory11 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 99, 5);
@@ -157,7 +164,7 @@ public class UbtsV1Controller {
         pa3BandSpinner.setValueFactory(valueFactory12);
 //        List<CheckBox> checkBoxList = Arrays.asList(pa0CheckBox, pa1CheckBox, pa2CheckBox, pa3CheckBox);
 //        List<Spinner<Integer>> spinnerList = Arrays.asList(pa0ReadBandSpinner, pa1ReadBandSpinner, pa2ReadBandSpinner, pa3ReadBandSpinner);
-        addList = Arrays.asList(pa0AddrI2CLabel, pa1AddrI2CLabel, pa2AddrI2CLabel);
+        addrList = Arrays.asList(pa0AddrI2CLabel, pa1AddrI2CLabel, pa2AddrI2CLabel);
         bandList = Arrays.asList(pa0BandLabel, pa1BandLabel, pa2BandLabel);
         fanpinList = Arrays.asList(pa0FanPinLabel, pa1FanPinLabel, pa2FanPinLabel);
         activeList = Arrays.asList(pa0IsActiveLabel, pa1IsActiveLabel, pa2IsActiveLabel);
@@ -178,8 +185,10 @@ public class UbtsV1Controller {
         comboBoxStandart2.setValue("UMTS");
         comboBoxStandart3.setValue("UMTS");
 
-        spinners = Arrays.asList(pa0AttSpinner, pa1AttSpinner, pa2AttSpinner, pa3AttSpinner);
-        parser.setSpinners(spinners);
+        spinnersAtt = Arrays.asList(pa0AttSpinner, pa1AttSpinner, pa2AttSpinner, pa3AttSpinner);
+        spinnersBand = Arrays.asList(pa0BandSpinner, pa1BandSpinner, pa2BandSpinner, pa3BandSpinner);
+        parser.setSpinnersAtt(spinnersAtt);
+        parser.setSpinnersBand(spinnersBand);
         bindPaParams();
     }
 
