@@ -36,5 +36,7 @@ public class Commands {
     static final String E8 = "e8";
     static final String E7 = "e7,";
     static final String READ_ATT = "64";
+    static final String READ_OUT_POWER = "14";
+    static final String READ_BW_POWER = "1f";
 
 }

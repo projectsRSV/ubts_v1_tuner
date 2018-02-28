@@ -381,4 +381,13 @@ public class UbtsV1Controller {
         whole = whole + fraction / 25;
         return Integer.toHexString(whole);
     }
+
+    @FXML
+    public void readPowerOut() {
+        controller.sendCommand(Commands.READ_OUT_POWER);
+    }
+    @FXML
+    public void readPowerBw() {
+        controller.sendCommand(Commands.READ_BW_POWER);
+    }
 }
